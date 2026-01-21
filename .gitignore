@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 HELP.md
 .gradle
 build/
@@ -47,3 +48,48 @@ Thumbs.db
 
 ### Logs ###
 *.log
+=======
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# Dependencies
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Build
+dist/
+build/
+.next/
+out/
+
+# Logs
+*.log
+logs/
+
+# AI/ML
+*.pt
+*.pth
+*.h5
+models/
+checkpoints/
+
+# Misc
+.cache/
+coverage/
+>>>>>>> 5a69963cdb8d745223950bff8325fe3f5077aa8f

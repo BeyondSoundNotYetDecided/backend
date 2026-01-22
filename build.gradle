@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-description = 'barmi_back'
+description = 'backend'
 
 java {
     toolchain {
@@ -42,14 +42,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
-    // MongoDB (AI 로그 저장용 - ★추가됨)
+    // MongoDB (AI 로그 저장용)
 //    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
     // ==========================================
     // 4. 보안 (Security + OAuth2 + JWT)
     // 아직 고민중,,,
     // ==========================================
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 //    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 //
 //    // JWT 라이브러리

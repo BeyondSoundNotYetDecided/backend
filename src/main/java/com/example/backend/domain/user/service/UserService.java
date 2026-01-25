@@ -1,9 +1,9 @@
-package com.example.backend.auth.service;
+package com.example.backend.domain.user.service;
 
-import com.example.backend.auth.entity.User;
-import com.example.backend.auth.repository.UserRepository;
-import com.example.backend.exception.CustomException;
-import com.example.backend.exception.ErrorCode;
+import com.example.backend.domain.user.entity.User;
+import com.example.backend.domain.user.repository.UserRepository;
+import com.example.backend.global.exception.CustomException;
+import com.example.backend.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

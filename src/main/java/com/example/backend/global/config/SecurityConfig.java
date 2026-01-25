@@ -1,4 +1,4 @@
-package com.example.backend.config;
+package com.example.backend.global.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

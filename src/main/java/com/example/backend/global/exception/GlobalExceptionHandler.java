@@ -1,6 +1,6 @@
-package com.example.backend.exception;
+package com.example.backend.global.exception;
 
-import com.example.backend.common.ApiResponse;
+import com.example.backend.global.dto.ApiResponse;
 import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

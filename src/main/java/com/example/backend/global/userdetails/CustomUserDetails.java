@@ -1,0 +1,54 @@
+package com.example.backend.global.userdetails;
+
+import com.example.backend.domain.user.entity.User;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.Collections;
+
+@Getter
+@RequiredArgsConstructor
+public class CustomUserDetails implements UserDetails {
+    //User 엔티티를 시큐리티가 이해할 수 있는 형태로 랩핑
+    private final User user;
+    // 1. 권한 반환 (Role -> GrantedAuthrity 변환)
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority(user.getRole().getKey()));
+    }
+
+    // 2. 비밀번호 반환
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
+    // 3. 사용자 식별자 반환 (PK)
+    @Override
+    public String getUsername() {
+        // ID(LONG)를 String으로 반환
+        return String.valueOf(user.getId());
+    }
+
+    // 4. 계정 상태 여부 (지금은 안 쓰니까 모두 true로 설정)
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+
+    @Override
+    public boolean isEnabled() { return true; }
+}

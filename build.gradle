@@ -71,6 +71,8 @@ dependencies {
     // 7. RabbitMQ와 통신하기 위한 필수 라이브러리
     // ==========================================
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testRuntimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {

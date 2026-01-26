@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 HELP.md
 .gradle
 build/
@@ -37,10 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
-### Security ###
+### Security ###\
+# 로컬 환경 구동을 위해 추가
 .env
-src/main/resources/application.yaml
-src/main/resources/application.yml
 
 ### OS ###
 .DS_Store
@@ -48,7 +46,6 @@ Thumbs.db
 
 ### Logs ###
 *.log
-=======
 # OS
 .DS_Store
 Thumbs.db
@@ -92,4 +89,3 @@ checkpoints/
 # Misc
 .cache/
 coverage/
->>>>>>> 5a69963cdb8d745223950bff8325fe3f5077aa8f

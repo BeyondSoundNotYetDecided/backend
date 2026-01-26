@@ -1,9 +1,10 @@
-package com.example.backend.config;
+package com.example.backend.global.config;
 
+import com.example.backend.global.auth.JwtTokenProvider;
+import com.example.backend.global.auth.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -11,7 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -23,6 +24,8 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -40,6 +43,9 @@ public class SecurityConfig {
 
                 // JWT 사용을 위해 세션 stateless 설정
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // Form 로그인 & HttpBasic 해제 (JSON 통신만 할 것이므로)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
 
 //                .authorizeHttpRequests(auth -> auth
 //                        .anyRequest().authenticated()
@@ -53,6 +59,13 @@ public class SecurityConfig {
                 // (일단 개발 편의를 위해) 모든 요청 허용 -> 나중에 로그인 로직 짤 때 수정 예정입니다!!
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
+                )
+
+                // 5. JWT 필터
+                // UsernamePasswordAuthenticationFilter(기본 로그인 필터) 앞에 필터를 배치
+                .addFilterBefore(
+                        new JwtAuthenticationFilter(jwtTokenProvider),
+                        UsernamePasswordAuthenticationFilter.class
                 );
 
         return http.build();

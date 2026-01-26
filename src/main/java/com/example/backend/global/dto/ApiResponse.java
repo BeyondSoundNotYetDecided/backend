@@ -1,6 +1,6 @@
-package com.example.backend.common;
+package com.example.backend.global.dto;
 
-import com.example.backend.exception.ErrorCode;
+import com.example.backend.global.exception.ErrorCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

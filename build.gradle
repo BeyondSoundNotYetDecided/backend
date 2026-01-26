@@ -42,9 +42,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
-    // MongoDB (AI 로그 저장용)
-//    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-
     // ==========================================
     // 4. 보안 (Security + OAuth2 + JWT)
     // 아직 고민중,,,
@@ -52,10 +49,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
 //    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 //
-//    // JWT 라이브러리
-//    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
-//    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
-//    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+    // JWT 라이브러리
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
 
     // ==========================================
     // 5. API 문서 (Swagger) - ★추가됨

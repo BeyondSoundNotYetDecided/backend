@@ -1,10 +1,10 @@
-package com.example.barmi_back;
+package com.example.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BarumiDemoApplicationTests {
+class BackendTests {
 
     @Test
     void contextLoads() {

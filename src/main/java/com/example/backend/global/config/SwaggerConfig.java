@@ -19,8 +19,8 @@ public class SwaggerConfig {
         return new OpenAPI()
                 // 1. API 정보 설정
                 .info(new Info()
-                        .title("청각장애인을 위한 영어 발음 교정 서비스 API 명세서")
-                        .description("청각장애인을 위한 영어 발음 교정 서비스 API 명세서입니다.")
+                        .title("바르미 API 명세서")
+                        .description("청각장애인을 위한 영어 발음 학습 서비스 바르미")
                         .version("v1")
                 )
                 // 2. 보안 스키마 등록 (JWT 설정)

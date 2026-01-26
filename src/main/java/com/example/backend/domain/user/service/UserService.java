@@ -22,11 +22,11 @@ public class UserService{
         // 유저 회원가입 전 email로 중복 체크
         if (userRepository.existsByEmail(user.getEmail())) {
             // 중복아이디 예외처리
-            throw new CustomException(ErrorCode.USER_ID_ALREADY_EXISTS);
+            throw new CustomException(ErrorCode.DUPLICATE_EMAIL);
         }
         if (userRepository.existsByNickname(user.getNickname())) {
             // 중복닉네임 예외처리
-            throw new CustomException(ErrorCode.NICKNAME_ALREADY_EXISTS);
+            throw new CustomException(ErrorCode.DUPLICATE_NICKNAME);
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));

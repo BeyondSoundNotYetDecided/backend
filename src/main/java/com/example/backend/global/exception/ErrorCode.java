@@ -37,6 +37,7 @@ public enum ErrorCode {
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, 40401, "해당 사용자를 찾을 수 없습니다."),
     DUPLICATE_EMAIL(HttpStatus.CONFLICT, 40901, "이미 가입된 이메일입니다."),
     DUPLICATE_NICKNAME(HttpStatus.CONFLICT, 40902, "이미 사용 중인 닉네임입니다."),
+    DUPLICATE_ID(HttpStatus.CONFLICT, 40902, "중복유저."),
 
     // =================================================================
     // 📚 Curriculum & Practice (학습 & 발음 연습)

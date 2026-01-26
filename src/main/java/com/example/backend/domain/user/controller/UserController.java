@@ -23,7 +23,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<String>> signup(@RequestBody SignUpRequest signUpRequest) {
-        userService.createUser(signUpRequest.toEntity());
+        userService.createUser(signUpRequest);
         return ResponseEntity.ok(ApiResponse.success("User registered successfully"));
     }
 

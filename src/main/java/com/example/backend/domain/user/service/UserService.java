@@ -1,5 +1,6 @@
 package com.example.backend.domain.user.service;
 
+import com.example.backend.domain.user.dto.SignUpRequest;
 import com.example.backend.domain.user.entity.User;
 import com.example.backend.domain.user.repository.UserRepository;
 import com.example.backend.global.exception.CustomException;
@@ -18,18 +19,19 @@ public class UserService{
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public User createUser(User user) {
+    public User createUser(SignUpRequest request) {
         // 유저 회원가입 전 email로 중복 체크
-        if (userRepository.existsByEmail(user.getEmail())) {
+        if (userRepository.existsByEmail(request.getEmail())) {
             // 중복아이디 예외처리
             throw new CustomException(ErrorCode.DUPLICATE_EMAIL);
         }
-        if (userRepository.existsByNickname(user.getNickname())) {
+        if (userRepository.existsByNickname(request.getNickname())) {
             // 중복닉네임 예외처리
             throw new CustomException(ErrorCode.DUPLICATE_NICKNAME);
         }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        request.setPassword(passwordEncoder.encode(request.getPassword()));
+        User user = request.toEntity();
         return userRepository.save(user);
     }
 

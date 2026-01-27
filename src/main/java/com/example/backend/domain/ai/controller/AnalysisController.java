@@ -23,7 +23,7 @@ public class AnalysisController {
     @PostMapping("/test")
     public ResponseEntity<String> sendTestMessage(@RequestBody AnalysisRequestDto requestDto) {
 
-        // 1. 프로듀서 호출 (메시지 전송)
+        // 프로듀서 호출 (메시지 전송)
         rabbitMqProducer.sendJob(
                 requestDto.getFeedbackId(),
                 requestDto.getFilePath(),

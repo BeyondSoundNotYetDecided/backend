@@ -1,12 +1,9 @@
-package com.example.backend.domain.ai.service;
+package com.example.backend.domain.ai.producer;
 
 import com.example.backend.domain.ai.dto.AnalysisRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor

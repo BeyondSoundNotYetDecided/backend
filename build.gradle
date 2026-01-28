@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '4.0.1'
+    id 'org.springframework.boot' version '3.4.1'
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -68,7 +68,14 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
 
     // ==========================================
-    // 7. OpenVidu (화상회의)
+    // 7. RabbitMQ와 통신하기 위한 필수 라이브러리
+    // ==========================================
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testRuntimeOnly 'com.h2database:h2'
+
+    // ==========================================
+    // 8. OpenVidu (화상회의)
     // ==========================================
     implementation 'io.openvidu:openvidu-java-client:2.30.0'
 }

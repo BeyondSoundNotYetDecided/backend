@@ -5,6 +5,8 @@ import com.example.backend.domain.user.repository.UserRepository;
 import com.example.backend.global.auth.JwtTokenProvider;
 import com.example.backend.global.auth.dto.LoginRequest;
 import com.example.backend.global.auth.dto.TokenResponse;
+import com.example.backend.global.exception.CustomException;
+import com.example.backend.global.exception.ErrorCode;
 import com.example.backend.global.userdetails.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +28,7 @@ public class AuthService {
     public TokenResponse login(LoginRequest request) {
         // 1. 이메일로 유저 찾기 (없으면 에러)
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("가입되지 않은 이메일입니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.LOGIN_FAILED));
 
         // 2. 비밀번호 확인 (입력한 비번 vs DB 비번)
         // matches(입력값, 암호화된값) 순서 중요!

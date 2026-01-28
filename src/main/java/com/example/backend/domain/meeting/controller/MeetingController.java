@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/api/meetings")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // 프론트엔드(3000번) 접속 허용
+@CrossOrigin(origins = "*") // 프론트엔드 접속 허용
 public class MeetingController {
     
     private final MeetingService meetingService;
@@ -20,11 +20,17 @@ public class MeetingController {
     // 방 생성 API
     @PostMapping("/sessions")
     public ResponseEntity<String> initializeSession(@RequestBody(required = false) SessionCreateRequest request) {
-        String sessionId = (request != null) ? request.getCustomSessionId() : null;
+        
+        // 1. 요청 Body가 없으면 빈 DTO 생성
+        if (request == null) {
+            request = new SessionCreateRequest();
+        }
 
         try {
-            String createdSessionId = meetingService.createSession(sessionId);
+            // DTO(request)를 Sevice로 전달
+            String createdSessionId = meetingService.createSession(request);
             return ResponseEntity.ok(createdSessionId);
+            
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error creating session: " + e.getMessage());
         }

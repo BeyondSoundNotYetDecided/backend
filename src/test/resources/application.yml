@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MySQL  # 메모리에 DB 생성
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop # 테스트 시작 때 만들고 끝나면 삭제
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: barmi       # 도커에 설정한 ID
+    password: barmi1234   # 도커에 설정한 PW
+    virtual-host: /barmi  # ⚠️ 중요: definitions.json 쓸 때 vhost를 /barmi로 했으면 꼭 적어야 함!
+    # 만약 도커에서 vhost 설정을 안 건드렸다면 '/' 라고 적으세요.
+jwt:
+  # 아무 글자나 길게 넣으면 됩니다 (테스트니까요)
+  secret: dGVzdF9zZWNyZXRfa2V5X2Zvcl90ZXN0aW5nX3B1cnBvc2Vfb25seV9kb19ub3RfdXNl
+  access-token-validity-in-seconds: 3600
+  refresh-token-validity-in-seconds: 86400

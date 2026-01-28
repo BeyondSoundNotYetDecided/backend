@@ -1,5 +1,6 @@
 package com.example.backend.domain.report;
 
+import com.example.backend.domain.curriculum.entity.Ipa;
 import com.example.backend.domain.user.entity.User;
 import com.example.backend.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;

@@ -1,6 +1,7 @@
 package com.example.backend.domain.curriculum.entity;
 
 import com.example.backend.domain.ai.dto.AnalysisRequestDto;
+import com.example.backend.domain.curriculum.model.AnalysisData;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -36,11 +37,10 @@ public class Curriculum {
     private String korPronunciation;
 
     /**
-     * ★ 수정됨: Map 대신 ScriptInfo 객체로 바로 매핑!
      * DB에는 JSON 문자열로 저장되지만,
-     * 자바에서 꺼낼 때는 자동으로 예쁜 ScriptInfo 객체가 됨.
+     * 자바에서 꺼낼 때는 자동으로 ScriptInfo 객체가 됨.
      */
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "json")
-    private AnalysisRequestDto.ScriptInfo analysisData;
+    private AnalysisData analysisData;
 }

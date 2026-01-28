@@ -15,7 +15,7 @@ public class AnalysisData {
     @Getter @Builder
     public static class WordData {
         private String text;               // 단어 (예: "LIKE")
-        private List<AnalysisRequestDto.PhonemeData> phonemes; // 해당 단어의 정석 음소 리스트
+        private List<PhonemeData> phonemes; // 해당 단어의 정석 음소 리스트
     }
 
     @Getter @Builder

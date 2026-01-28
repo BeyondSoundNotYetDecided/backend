@@ -66,6 +66,11 @@ dependencies {
     // 굳이 webmvc-test, jpa-test 따로 적을 필요 없습니다.
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+
+    // ==========================================
+    // 7. OpenVidu (화상회의)
+    // ==========================================
+    implementation 'io.openvidu:openvidu-java-client:2.30.0'
 }
 
 tasks.named('test') {

@@ -89,3 +89,6 @@ checkpoints/
 # Misc
 .cache/
 coverage/
+
+### Spring Boot ###
+src/main/resources/application.yml

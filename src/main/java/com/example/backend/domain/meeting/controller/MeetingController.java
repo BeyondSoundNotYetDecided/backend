@@ -1,13 +1,12 @@
 package com.example.backend.domain.meeting.controller;
 
 import com.example.backend.domain.meeting.dto.SessionCreateRequest;
+import com.example.backend.domain.meeting.dto.SessionResponse;
 import com.example.backend.domain.meeting.service.MeetingService;
+import com.example.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RestController
 @RequestMapping("/api/meetings")
@@ -19,7 +18,8 @@ public class MeetingController {
 
     // 방 생성 API
     @PostMapping("/sessions")
-    public ResponseEntity<String> initializeSession(@RequestBody(required = false) SessionCreateRequest request) {
+    public ResponseEntity<ApiResponse<SessionResponse>> initializeSession(
+            @RequestBody(required = false) SessionCreateRequest request) {
         
         // 1. 요청 Body가 없으면 빈 DTO 생성
         if (request == null) {
@@ -27,12 +27,17 @@ public class MeetingController {
         }
 
         try {
-            // DTO(request)를 Sevice로 전달
+            // 2. DTO(request)를 Sevice로 전달
             String createdSessionId = meetingService.createSession(request);
-            return ResponseEntity.ok(createdSessionId);
-            
+
+            // 3. 결과 포장: String -> SessionResponse DTO로 변환
+            SessionResponse responseData = new SessionResponse(createdSessionId);
+
+            // 4. 최종 응답: ApiResponse로 감싸서 반환
+            return ResponseEntity.ok(ApiResponse.success(responseData));
+
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error creating session: " + e.getMessage());
+            return ResponseEntity.status(500).body(null);
         }
     }    
 }

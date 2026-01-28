@@ -73,6 +73,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testRuntimeOnly 'com.h2database:h2'
+
+    // ==========================================
+    // 8. OpenVidu (화상회의)
+    // ==========================================
+    implementation 'io.openvidu:openvidu-java-client:2.30.0'
 }
 
 tasks.named('test') {

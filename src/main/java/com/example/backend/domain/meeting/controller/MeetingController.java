@@ -3,6 +3,7 @@ package com.example.backend.domain.meeting.controller;
 import com.example.backend.domain.meeting.dto.SessionCreateRequest;
 import com.example.backend.domain.meeting.dto.SessionResponse;
 import com.example.backend.domain.meeting.service.MeetingService;
+import com.example.backend.domain.meeting.dto.MeetingTokenResponse;
 import com.example.backend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -40,4 +41,24 @@ public class MeetingController {
             return ResponseEntity.status(500).body(null);
         }
     }    
+
+    // 토큰 발급 API
+    @PostMapping("/sessions/{sessionId}/connections")
+    public ResponseEntity<ApiResponse<MeetingTokenResponse>> createConnection(
+            @PathVariable("sessionId") String sessionId) {
+
+        try {
+            // 1. 서비스 호출하여 토큰 발급
+            String token = meetingService.createToken(sessionId);
+
+            // 2. DTO 포장 (String -> MeetingTokenResponse)
+            MeetingTokenResponse responseData = new MeetingTokenResponse(token);
+
+            // 3. 최종 응답: ApiResponse로 감싸서 반환 
+            return ResponseEntity.ok(ApiResponse.success(responseData));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(null);
+        }
+    }
 }

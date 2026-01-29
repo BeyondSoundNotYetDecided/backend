@@ -9,20 +9,18 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
 @Tag(name = "AI 분석 API", description = "RabbitMQ 테스트용 API")
 @RestController
-@RequestMapping("/api/analysis")
+@RequestMapping("/api/feedback")
 @RequiredArgsConstructor
-public class AnalysisController {
+public class FeedbackRequestController {
 
     private final RabbitMQProducer rabbitMqProducer;
     private final FileService fileService;
@@ -32,7 +30,7 @@ public class AnalysisController {
             value = "/submit",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
-    public ResponseEntity<String> testUpload(
+    public ResponseEntity<String> requestFeedback(
             @AuthenticationPrincipal CustomUserDetails userDetails,
             @RequestParam("curriculumId") Long curriculumId,
             @RequestPart("file") MultipartFile file
